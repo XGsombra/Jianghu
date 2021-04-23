@@ -4,13 +4,22 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.jianghu.jianghu.serviceImpl.UserServiceImpl;
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScans;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
+@MapperScan(basePackages = "com.jianghu.jianghu.mapper")
+@ComponentScan("com.jianghu.jianghu")
+@EntityScan("com.jianghu.jianghu.entity")
 @SpringBootApplication
 public class JianghuApplication {
 
