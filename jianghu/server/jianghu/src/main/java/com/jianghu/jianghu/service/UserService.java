@@ -11,12 +11,27 @@ public interface UserService {
      * @param phone phone number of the user
      * @return the UUID of the user
      */
-    public String addUser(String username, String email, String phone);
+    String addUserInfo(String username, String email, String phone);
 
     /** Get the user information.
-     * @param userid the UUID of the user
+     *
+     * @param userId the UUID of the user
      * @return the user object that represents the user information
      */
-    public User GetUser(String userid);
+    User getUserByUserId(String userId);
+
+    /** Get user UUID by email.
+     *
+     * @param email email of the user
+     * @return the UUID of the user
+     */
+    String getUserIdByEmail(String email);
+
+    /** Get user UUID by phone.
+     *
+     * @param phone phone number of the user
+     * @return the UUID of the user
+     */
+    String getUserIdByPhone(String phone);
 
 }

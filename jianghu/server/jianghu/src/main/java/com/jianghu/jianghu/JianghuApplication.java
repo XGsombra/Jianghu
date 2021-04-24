@@ -17,7 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
-@MapperScan(basePackages = "com.jianghu.jianghu.mapper")
 @ComponentScan("com.jianghu.jianghu")
 @EntityScan("com.jianghu.jianghu.entity")
 @SpringBootApplication

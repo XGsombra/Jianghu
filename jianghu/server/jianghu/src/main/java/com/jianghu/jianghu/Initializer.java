@@ -13,6 +13,7 @@ public class Initializer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        userServiceImpl.initializeUserInfoTable(); //initialize user_info table
+        userServiceImpl.initializeUserInfoTable(); // initialize user_info table
+        userServiceImpl.initializeUserAuthTable(); // initialize user_auth table
     }
 }

@@ -1,19 +1,13 @@
 package com.jianghu.jianghu.Entity;
 
-import org.springframework.data.relational.core.mapping.Table;
-
 import java.io.Serializable;
 
 public class User implements Serializable{
 
     private String userId;
-
     private String username;
-
     private String email;
-
     private String phone;
-
     private Integer level;
 
     public User(String userId, String username, String email, String phone){
