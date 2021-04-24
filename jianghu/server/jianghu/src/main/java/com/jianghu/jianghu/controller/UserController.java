@@ -42,7 +42,7 @@ public class UserController {
             return new ResponseEntity<>(new HttpExceptionOutputDto("Bad Input"), HttpStatus.valueOf(400));
         }
         String username = addUserInputDto.getUsername();
-        String password = addUserInputDto.getUsername();
+        String password = addUserInputDto.getPassword();
         String email = addUserInputDto.getEmail();
         String phone = addUserInputDto.getPhone();
 

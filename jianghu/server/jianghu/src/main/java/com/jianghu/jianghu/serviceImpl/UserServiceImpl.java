@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.UUID;
 
@@ -115,19 +117,12 @@ public class UserServiceImpl implements UserService, AuthenticationService {
     public Boolean addUserCredential(String userId, String password) {
 
         // get random salt
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-
+        byte[] salt = getRandomSalt();
         try {
             // get hash function and hash the password
-            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] hash = factory.generateSecret(spec).getEncoded();
-            String hexSalt = HexUtils.toHexString(salt);
-            String hexSaltedHash = HexUtils.toHexString(hash);
+            String saltedHash = hashPassword(salt, password);
             // add credential to database
-            userAuthDao.createUserAuth(userId, hexSalt, hexSaltedHash);
+            userAuthDao.createUserAuth(userId, HexUtils.toHexString(salt), saltedHash);
         } catch (Exception e){
             e.printStackTrace();
             return false;
@@ -150,17 +145,40 @@ public class UserServiceImpl implements UserService, AuthenticationService {
             return false;
         }
         byte[] salt = HexUtils.fromHexString(userAuth.getSalt());
-        System.out.println(userAuth.getSalt().equals(HexUtils.toHexString(salt)));
         try {
-            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] actualHash = factory.generateSecret(spec).getEncoded();
-            System.out.println(HexUtils.toHexString(actualHash));
-            System.out.println(userAuth.getHash());
-            return HexUtils.toHexString(actualHash).equals(userAuth.getHash());
+            String actualHash = hashPassword(salt, password);
+            return actualHash.equals(userAuth.getHash());
         } catch (Exception e){
             e.printStackTrace();
             return false;
         }
+    }
+
+    /** Generate salt for hashing.
+     *
+     * @return the random salt
+     */
+    private byte[] getRandomSalt(){
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        return salt;
+    }
+
+    /** Hash password.
+     *
+     * @param salt the salt for hash
+     * @param password the password to hash
+     * @return the salted hash password
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    private String hashPassword(byte[] salt, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        byte[] hash = factory.generateSecret(spec).getEncoded();
+        String hexSaltedHash = HexUtils.toHexString(hash);
+        spec.clearPassword();
+        return hexSaltedHash;
     }
 }
