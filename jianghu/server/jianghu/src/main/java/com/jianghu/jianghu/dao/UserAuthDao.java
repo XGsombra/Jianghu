@@ -1,6 +1,5 @@
 package com.jianghu.jianghu.dao;
 
-import com.jianghu.jianghu.Entity.User;
 import com.jianghu.jianghu.Entity.UserAuth;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

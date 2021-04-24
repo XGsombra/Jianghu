@@ -1,10 +1,7 @@
 package com.jianghu.jianghu.dao;
 
 import com.jianghu.jianghu.Entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserDao {
@@ -27,6 +24,8 @@ public interface UserDao {
             " VALUES(#{userId}, #{username}, #{email}, #{phone}, #{level})")
     void createUserInfo(String userId, String username, String email, String phone, Integer level);
 
+    @Delete("DELETE FROM user_info WHERE userid=#{userId}")
+    void deleteUserInfo(String userId);
 
     @Select("SELECT * FROM user_info WHERE userid = #{userId}")
     User getUserByUserId(String userId);

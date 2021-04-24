@@ -74,6 +74,17 @@ public class UserServiceImpl implements UserService, AuthenticationService {
     }
 
     /**
+     * Remove the user profile.
+     *
+     * @param userId The UUID of the user
+     * @return true if successfully removed user info
+     */
+    @Override
+    public void removeUserInfo(String userId) {
+        userDao.deleteUserInfo(userId);
+    }
+
+    /**
      * Get the user information.
      *
      * @param userId the UUID of the user

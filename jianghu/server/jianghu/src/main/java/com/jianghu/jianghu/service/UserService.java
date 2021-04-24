@@ -13,6 +13,12 @@ public interface UserService {
      */
     String addUserInfo(String username, String email, String phone);
 
+    /** Remove the user profile.
+     *
+     * @param userId The UUID of the user
+     */
+    void removeUserInfo(String userId);
+
     /** Get the user information.
      *
      * @param userId the UUID of the user
