@@ -1,23 +1,18 @@
 # Jianghu
 
-## Design
-
-  - User can sign up for the application using email or phone number.
-  - User can view a list of available tasks.
-  - User can publish a task.
-  - User can 
-
-## Technology
+  - Spring Boot
+    - Controller of the RESTful API of the server.
+    - used interceptor to check user session status and log HTTP response/request.
 
   - Redis
-    - User credential
-    - User sign in status
+    - Used for user session storage.
 
   - PostgreSQL
-    - Tasks
+    - Used to store the user profile information and user credentials.
 
-  - Spring Boot
-    - RESTful API of the server
+  - MyBatis
+    - Used XML file mapping to implement SQL operations.
+    - ${} not used to avoid SQL injection.
 
   - React
-    - The front end of the application
+    - The front end of the application.
