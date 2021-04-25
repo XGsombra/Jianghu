@@ -36,7 +36,7 @@ public class UserController {
      * @param addUserInputDto The user information
      * @return the user ID of the new user
      */
-    @PostMapping("/user")
+    @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody AddUserInputDto addUserInputDto, HttpServletRequest request) {
 
 //        if (request.getSession().getAttribute("userId") == null){
