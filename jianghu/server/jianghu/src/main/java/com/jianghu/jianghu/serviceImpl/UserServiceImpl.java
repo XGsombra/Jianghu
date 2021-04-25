@@ -1,9 +1,9 @@
 package com.jianghu.jianghu.serviceImpl;
 
-import com.jianghu.jianghu.Entity.User;
-import com.jianghu.jianghu.Entity.UserAuth;
-import com.jianghu.jianghu.dao.UserAuthDao;
-import com.jianghu.jianghu.dao.UserDao;
+import com.jianghu.jianghu.entity.User;
+import com.jianghu.jianghu.entity.UserAuth;
+import com.jianghu.jianghu.mapper.UserAuthMapper;
+import com.jianghu.jianghu.mapper.UserMapper;
 import com.jianghu.jianghu.service.AuthenticationService;
 import com.jianghu.jianghu.service.UserService;
 import org.apache.tomcat.util.buf.HexUtils;
@@ -15,25 +15,25 @@ import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService, AuthenticationService {
 
     @Autowired
-    private UserDao userDao;
+    private UserAuthMapper userAuthMapper;
 
     @Autowired
-    private UserAuthDao userAuthDao;
+    private UserMapper userMapper;
 
     /** Initialize the user_info table.
      *
      * @return true if initialized the user_info table, false if the table already exists
      */
     public Boolean initializeUserInfoTable(){
-        if (!userDao.existUserInfoTable()){
-            userDao.createUserInfoTable();
+        if (!userMapper.existUserInfoTable()){
+            userMapper.createUserInfoTable();
             System.out.println("Initialization: Successfully initiated tables for user information");
             return true;
         }
@@ -46,8 +46,8 @@ public class UserServiceImpl implements UserService, AuthenticationService {
      * @return true if initialized the user_auth table, false if the table already exists
      */
     public Boolean initializeUserAuthTable(){
-        if (!userAuthDao.existUserAuthTable()){
-            userAuthDao.createUserAuthTable();
+        if (!userAuthMapper.existUserAuthTable()){
+            userAuthMapper.createUserAuthTable();
             System.out.println("Initialization: Successfully initiated tables for user authentication");
             return true;
         }
@@ -65,12 +65,19 @@ public class UserServiceImpl implements UserService, AuthenticationService {
     @Override
     public String addUserInfo(String username, String email, String phone) {
         String userId = UUID.randomUUID().toString();
-        if ((email != null && userDao.getUserIdByEmail(email) != null) ||
-                (phone != null && userDao.getUserIdByPhone(phone) != null)) {
+        if ((email != null && userMapper.getUserIdByEmail(email) != null) ||
+                (phone != null && userMapper.getUserIdByPhone(phone) != null)) {
             return null;
         }
-        userDao.createUserInfo(userId, username, email, phone, 0);
+        userMapper.createUserInfo(userId, username, email, phone, 0);
         return userId;
+    }
+
+    public void printUsers(){
+        List<User> users = userMapper.getAllUsers();
+        for (User user:users){
+            System.out.println(user.getUsername());
+        }
     }
 
     /**
@@ -81,7 +88,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
      */
     @Override
     public void removeUserInfo(String userId) {
-        userDao.deleteUserInfo(userId);
+        userMapper.deleteUserInfo(userId);
     }
 
     /**
@@ -92,7 +99,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
      */
     @Override
     public User getUserByUserId(String userId) {
-        return userDao.getUserByUserId(userId);
+        return userMapper.getUserByUserId(userId);
     }
 
     /**
@@ -103,7 +110,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
      */
     @Override
     public String getUserIdByEmail(String email) {
-        return userDao.getUserIdByEmail(email);
+        return userMapper.getUserIdByEmail(email);
     }
 
     /**
@@ -114,7 +121,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
      */
     @Override
     public String getUserIdByPhone(String phone) {
-        return userDao.getUserIdByPhone(phone);
+        return userMapper.getUserIdByPhone(phone);
     }
 
     /**
@@ -133,7 +140,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
             // get hash function and hash the password
             String saltedHash = hashPassword(salt, password);
             // add credential to database
-            userAuthDao.createUserAuth(userId, HexUtils.toHexString(salt), saltedHash);
+            userAuthMapper.createUserCredential(userId, HexUtils.toHexString(salt), saltedHash);
         } catch (Exception e){
             e.printStackTrace();
             return false;
@@ -150,7 +157,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
      */
     @Override
     public Boolean authenticateUser(String userId, String password) {
-        UserAuth userAuth = userAuthDao.getCredentialByUserId(userId);
+        UserAuth userAuth = userAuthMapper.getCredentialByUserId(userId);
         // user does not exist, return false
         if (userAuth == null) {
             return false;

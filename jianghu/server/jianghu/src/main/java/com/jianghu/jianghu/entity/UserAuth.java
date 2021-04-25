@@ -1,4 +1,4 @@
-package com.jianghu.jianghu.Entity;
+package com.jianghu.jianghu.entity;
 
 import java.io.Serializable;
 

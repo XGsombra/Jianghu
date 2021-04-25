@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.jianghu.jianghu.mapper.UserMapper" >
+    <resultMap id ="UserMap" type="com.jianghu.jianghu.entity.User">
+        <result column="userid" property="userid"/>
+        <result column="username" property="username"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="level" property="level"/>
+    </resultMap>
+
+    <select id = "getAllUsers" resultType= "com.jianghu.jianghu.entity.User">
+        SELECT * FROM user_info
+    </select>
+    
+    <select id="existUserInfoTable" resultType="Boolean">
+        SELECT COUNT(*) > 0
+        FROM information_schema.TABLES
+          WHERE table_name = 'user_info'
+    </select>
+
+    <update id="createUserInfoTable">
+        create table user_info (
+            userid TEXT NOT NULL,
+            username TEXT NOT NULL,
+            email TEXT,
+            phone TEXT,
+            level INT NOT NULL,
+            PRIMARY KEY (userid))
+    </update>
+
+    <insert id="createUserInfo">
+        INSERT INTO user_info(userid, username, email, phone, level)
+        VALUES(#{userId}, #{username}, #{email}, #{phone}, #{level})
+    </insert>
+
+    <delete id="deleteUserInfo">
+        DELETE FROM user_info WHERE userid=#{userId}
+    </delete>
+
+    <select id="getUserByUserId" resultType="com.jianghu.jianghu.entity.User">
+        SELECT * FROM user_info WHERE userid = #{userId}
+    </select>
+
+    <select id="getUserIdByEmail" resultType="String">
+        SELECT userid FROM user_info WHERE email = #{email}
+    </select>
+
+    <select id="getUserIdByPhone" resultType="String">
+        SELECT userid FROM user_info WHERE phone = #{phone}
+    </select>
+</mapper>

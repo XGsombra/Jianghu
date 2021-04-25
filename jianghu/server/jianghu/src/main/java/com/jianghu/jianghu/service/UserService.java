@@ -1,6 +1,6 @@
 package com.jianghu.jianghu.service;
 
-import com.jianghu.jianghu.Entity.User;
+import com.jianghu.jianghu.entity.User;
 
 public interface UserService {
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.jianghu.jianghu.mapper.UserAuthMapper" >
+    <resultMap id ="UserAuthMap" type="com.jianghu.jianghu.entity.UserAuth">
+        <result column="userid" property="userid"/>
+        <result column="salt" property="salt"/>
+        <result column="hash" property="hash"/>
+    </resultMap>
+
+    <select id="existUserAuthTable" resultType="Boolean">
+        SELECT COUNT(*) > 0
+        FROM information_schema.TABLES
+        WHERE table_name = 'user_auth'
+    </select>
+
+    <update id="createUserAuthTable">
+        create table user_auth (
+            userid TEXT NOT NULL,
+            salt TEXT NOT NULL,
+            hash TEXT NOT NULL,
+            PRIMARY KEY (userid))
+    </update>
+
+    <insert id="createUserCredential">
+        INSERT INTO user_auth(userid, salt, hash)
+        VALUES(#{userId}, #{salt}, #{hash})
+    </insert>
+
+    <select id="getCredentialByUserId" resultType="com.jianghu.jianghu.entity.UserAuth">
+        SELECT * FROM user_auth WHERE userid = #{userId}
+    </select>
+</mapper>

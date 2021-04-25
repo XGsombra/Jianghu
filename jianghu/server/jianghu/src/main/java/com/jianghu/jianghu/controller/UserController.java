@@ -1,14 +1,12 @@
 package com.jianghu.jianghu.controller;
 
-import com.jianghu.jianghu.Entity.User;
+import com.jianghu.jianghu.entity.User;
 import com.jianghu.jianghu.dto.AddUserInputDto;
 
 import com.jianghu.jianghu.dto.GetUserIdOutput;
 import com.jianghu.jianghu.dto.HttpExceptionOutputDto;
 import com.jianghu.jianghu.dto.SignInUserInputDto;
 import com.jianghu.jianghu.serviceImpl.UserServiceImpl;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
@@ -17,10 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,14 +39,12 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<?> createUser(@RequestBody AddUserInputDto addUserInputDto, HttpServletRequest request) {
 
-        if (request.getSession().getAttribute("userId") == null){
-            return new ResponseEntity<>(
-                    new HttpExceptionOutputDto("Access Denied"),
-                    HttpStatus.valueOf(403)
-            );
-        }
-
-        System.out.println(request.getSession().getAttribute("userId"));
+//        if (request.getSession().getAttribute("userId") == null){
+//            return new ResponseEntity<>(
+//                    new HttpExceptionOutputDto("Access Denied"),
+//                    HttpStatus.valueOf(403)
+//            );
+//        }
 
         // check for bad input
         if (!addUserInputDto.check()){
@@ -206,5 +198,11 @@ public class UserController {
         session.removeAttribute("userId");
         session.invalidate();
         return new ResponseEntity<>("Successfully logged out", HttpStatus.valueOf(200));
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> test(){
+        userServiceImpl.printUsers();
+        return new ResponseEntity<>("Successful", HttpStatus.valueOf(200));
     }
 }
