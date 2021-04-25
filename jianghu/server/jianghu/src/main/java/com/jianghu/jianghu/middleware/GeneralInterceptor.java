@@ -1,5 +1,6 @@
 package com.jianghu.jianghu.middleware;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +10,13 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Date;
 
 public class GeneralInterceptor implements HandlerInterceptor {
@@ -42,8 +48,16 @@ public class GeneralInterceptor implements HandlerInterceptor {
         // add the separator to log item
         logItem.append("---------------------------------------------------\n");
 
-        System.out.println(this.httpLogPath);
-        //Path path = Paths.get(httpLogPath);
+        File logFile = new File(httpLogPath);
+        Boolean existsLogFile = logFile.exists();
+
+        if (!existsLogFile){
+            logFile.getParentFile().mkdirs();
+            logFile.createNewFile();
+        }
+        FileWriter fr = new FileWriter(logFile, true);
+        fr.write(logItem.toString());
+        fr.close();
         return true;
     }
 }
