@@ -8,6 +8,7 @@ import com.jianghu.jianghu.dto.HttpExceptionOutputDto;
 import com.jianghu.jianghu.dto.SignInUserInputDto;
 import com.jianghu.jianghu.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
