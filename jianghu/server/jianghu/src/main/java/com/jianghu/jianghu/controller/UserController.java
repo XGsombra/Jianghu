@@ -73,7 +73,6 @@ public class UserController {
         // add user credential
         Boolean addedCredential = userServiceImpl.addUserCredential(userId, password);
         if (!addedCredential) {
-
             // roll back the user information and return 500
             userServiceImpl.removeUserInfo(userId);
             return new ResponseEntity<>(
@@ -118,7 +117,7 @@ public class UserController {
      * @param phone the phone number of the user
      * @return the UUID of the user
      */
-    @GetMapping("/userId")
+    @GetMapping("/login/userId")
     public ResponseEntity<?> getUserId(@RequestParam(required = false) String email,
                                        @RequestParam(required = false) String phone) {
 

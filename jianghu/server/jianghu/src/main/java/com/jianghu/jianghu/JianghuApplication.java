@@ -21,6 +21,7 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 
 @ComponentScan("com.jianghu.jianghu")
 @EntityScan("com.jianghu.jianghu.entity")
+@CrossOrigin
 @EnableRedisHttpSession
 @SpringBootApplication
 public class JianghuApplication {

@@ -13,11 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Date;
 
 public class GeneralInterceptor implements HandlerInterceptor {
@@ -60,7 +55,19 @@ public class GeneralInterceptor implements HandlerInterceptor {
         fileWriter.write(logItem.toString());
         fileWriter.close();
         System.out.println(logItem);
+
+        // enable CORS for all response for local testing
+        response.addHeader("Access-Control-Allow-Credentials","true");
+        response.addHeader("Access-Control-Allow-Origin","*");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.addHeader("Access-Control-Expose-Headers","X-Token");
+        response.addHeader("Access-Control-Allow-Headers", "Origin, Content-Type");
         return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
     }
 
     @Override

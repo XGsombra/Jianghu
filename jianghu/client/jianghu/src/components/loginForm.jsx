@@ -15,9 +15,11 @@ class LoginForm extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleLogin = function (accoun) {
+    handleLogin = function () {
         const { account, password } = this.state;
-        loginUser(account, password, console.log, console.log);
+        loginUser(account, password, function (res) {
+            window.location.href = "/home";
+        }, alert);
     };
 
     handleInputChange = function (e, { name, value }) {

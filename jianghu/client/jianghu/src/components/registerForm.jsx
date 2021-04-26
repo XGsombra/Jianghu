@@ -33,7 +33,11 @@ class RegisterForm extends React.Component {
             alert("Password doesn't match, please try again");
             return;
         }
-        registerUser(username, email, phone, password, console.log, console.log);
+        registerUser(username, email, phone, password,
+            function (res) {
+                localStorage.setItem("userId", res.data.userId);
+                window.location.href = "/home";
+            }, console.log);
     };
 
     handleInputChange = function (e, { name, value }) {
