@@ -1,19 +1,58 @@
 import React from 'react';
-import axios from 'axios'
 import '../styles/login.css';
+import { Form } from 'semantic-ui-react';
+import { loginUser } from '../api/userApi';
 
 class LoginForm extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            account: "",
+            password: "",
+        };
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleLogin = function (accoun) {
+        const { account, password } = this.state;
+        loginUser(account, password, console.log, console.log);
+    };
+
+    handleInputChange = function (e, { name, value }) {
+        this.setState({ [name]: value })
+    };
+
     render() {
         return (
-            <div id="login-form">
-                <div className="input">Account</div>
-                <input id="phone-email" placeholder="Enter email or phone number" type="text"></input>
-                <div className="input">Password</div>
-                <input id="password" placeholder="Enter your password" type="text"></input>
+            <Form id='login-form' onSubmit={this.handleLogin} >
+                <Form.Input
+                    label='Account'
+                    placeholder='Enter your email or phone number'
+                    name='account'
+                    id="account"
+                    className="input"
+                    onChange={this.handleInputChange}
+                    required
+                />
+                <Form.Input
+                    label='Password'
+                    type='password'
+                    placeholder="Enter your password"
+                    name='password'
+                    id="password"
+                    className="input"
+                    onChange={this.handleInputChange}
+                    required
+                />
                 <a className="log-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
-                <button id="login-btn">Log In</button>
-            </div>
+                <Form.Button
+                    fluid
+                    id="login-btn"
+                    type='submit'
+                >Login</Form.Button>
+            </Form>
         );
     };
 }

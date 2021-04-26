@@ -18,7 +18,7 @@ class RegisterForm extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleRegister = () => {
+    handleRegister = function () {
         const { username, password, passwordConfirm, email, phone } = this.state;
         console.log(username);
         if (email !== "" && !email.includes("@")) {

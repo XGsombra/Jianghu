@@ -14,12 +14,12 @@
 }
 
 #jianghu {
-    font-size: 60px;
+    font-size: 50px;
     margin: 1%;
 }
 
 #login-form {
-    width: 50vmin;
+    width: max-content;
     margin-top: 1vmin;
     padding: 10px;
     border-radius: 5px;
@@ -30,10 +30,10 @@
     flex-direction: column;
 }
 
-#login-form .input{
+.input{
     font-size: 15px;
     text-align: left;
-    margin: 5px;
+    margin: 2px;
     border-radius: 5px;
 }
 

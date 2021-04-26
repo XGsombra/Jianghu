@@ -10,3 +10,7 @@ export function registerUser(username, email, phone, password, onSuccess, onErro
     const data = JSON.stringify({ username, email, phone, password });
     axios.post(base + '/api/users/signup', data, config).then(onSuccess).catch(onError);
 }
+
+export function loginUser(account, password, onSuccess, onError) {
+
+}

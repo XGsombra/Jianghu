@@ -5,7 +5,7 @@ class Header extends React.Component {
     render() {
         return (
             <div id="header">
-                <div className="input">JIANGHU</div>
+                <div className="clickable">JIANGHU</div>
             </div>
         );
     };

@@ -59,30 +59,9 @@ public class GeneralInterceptor implements HandlerInterceptor {
         FileWriter fileWriter = new FileWriter(logFile, true);
         fileWriter.write(logItem.toString());
         fileWriter.close();
+        System.out.println(logItem);
         return true;
     }
-
-//    @Override
-//    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-//        // log the http request
-//        StringBuffer logItem = new StringBuffer();
-//        // add the request time to log item
-//        logItem.append("response time: " + new Date() + "\n");
-//        logItem.append("HTTP status:   " + response.getStatus() + "\n");
-//        logItem.append("" + response.)
-//        logItem.append("---------------------------------------------------\n");
-//
-//        File logFile = new File(httpLogPath);
-//        Boolean existsLogFile = logFile.exists();
-//
-//        if (!existsLogFile){
-//            logFile.getParentFile().mkdirs();
-//            logFile.createNewFile();
-//        }
-//        FileWriter fr = new FileWriter(logFile, true);
-//        fr.write(logItem.toString());
-//        fr.close();
-//    }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
@@ -108,5 +87,6 @@ public class GeneralInterceptor implements HandlerInterceptor {
         FileWriter fr = new FileWriter(logFile, true);
         fr.write(logItem.toString());
         fr.close();
+        System.out.println(logItem);
     }
 }

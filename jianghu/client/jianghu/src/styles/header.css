@@ -13,3 +13,7 @@
     text-align: left;
     padding-left: 15px;
 }
+
+#header:hover{
+	cursor: pointer;
+}
