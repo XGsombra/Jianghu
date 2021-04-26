@@ -1,43 +1,98 @@
 import React from 'react';
 import '../styles/register.css';
+import { Form } from 'semantic-ui-react';
+import { registerUser } from '../api/userApi';
 
 class RegisterForm extends React.Component {
 
-    changeToEmail = function (e) {
-        document.getElementById("phone-div").style.display = "none";
-        document.getElementById("email-div").style.display = "block";
-        document.getElementById("register-phone-btn").style.display = "block";
-        document.getElementById("register-email-btn").style.display = "none";
+    constructor() {
+        super();
+        this.state = {
+            username: "",
+            password: "",
+            passwordConfirm: "",
+            email: "",
+            phone: "",
+        };
+        this.handleRegister = this.handleRegister.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    changeToPhone = function (e) {
-        document.getElementById("phone-div").style.display = "block";
-        document.getElementById("email-div").style.display = "none";
-        document.getElementById("register-phone-btn").style.display = "none";
-        document.getElementById("register-email-btn").style.display = "block";
-    }
+    handleRegister = () => {
+        const { username, password, passwordConfirm, email, phone } = this.state;
+        console.log(username);
+        if (email !== "" && !email.includes("@")) {
+            alert("Invalid email address");
+            return;
+        }
+        if (phone !== "" && isNaN(phone)) {
+            alert("Invalid phone address");
+            return;
+        }
+        if (password !== passwordConfirm) {
+            alert("Password doesn't match, please try again");
+            return;
+        }
+        registerUser(username, email, phone, password, console.log, console.log);
+    };
+
+    handleInputChange = function (e, { name, value }) {
+        this.setState({ [name]: value })
+    };
 
     render() {
         return (
-            <div id="register-form">
-                <div className="input">Username</div>
-                <input id="username" placeholder="Enter your username" type="text"></input>
-                <div id="phone-div">
-                    <div className="input">Phone Number</div>
-                    <input id="phone" placeholder="Enter phone number" type="text"></input>
-                </div>
-                <div id="email-div">
-                    <div className="input">Email Address</div>
-                    <input id="email" placeholder="Enter email address" type="text"></input>
-                </div>
-                <div className="input">Password</div>
-                <input id="password" placeholder="Enter your password" type="text"></input>
-                <div className="input">Confirm Password</div>
-                <input id="password" placeholder="Enter your password again" type="text"></input>
-                <button className="register-btns" id="register-btn">Register</button>
-                <button className="register-btns" id="register-email-btn" onClick={this.changeToEmail}>Register using email</button>
-                <button className="register-btns" id="register-phone-btn" onClick={this.changeToPhone}>Register using phone</button>
-            </div >
+            <Form id='register-form' onSubmit={this.handleRegister} >
+                <Form.Input
+                    label='Username'
+                    placeholder="Enter your username"
+                    name='username'
+                    className="input"
+                    onChange={this.handleInputChange}
+                    required
+                />
+                <Form.Input
+                    label='Email'
+                    placeholder='Enter your email address'
+                    name='email'
+                    className="input"
+                    onChange={this.handleInputChange}
+                    disabled={this.state.phone !== ""}
+                    required
+                />
+                <Form.Input
+                    label='Phone'
+                    placeholder='Enter your phone number'
+                    name='phone'
+                    className="input"
+                    onChange={this.handleInputChange}
+                    disabled={this.state.email !== ""}
+                    required
+                />
+                <Form.Input
+                    label='Password'
+                    type='password'
+                    placeholder="Enter your password"
+                    name='password'
+                    className="input"
+                    onChange={this.handleInputChange}
+                    required
+                />
+                <Form.Input
+                    label='Password Confirmation'
+                    placeholder="Enter your password again"
+                    type='password'
+                    name='passwordConfirm'
+                    className="input"
+                    onChange={this.handleInputChange}
+                    required
+                />
+                <Form.Button
+                    fluid
+                    id="register-btns"
+                    type='submit'
+                >Register</Form.Button>
+            </Form>
         );
     };
 }

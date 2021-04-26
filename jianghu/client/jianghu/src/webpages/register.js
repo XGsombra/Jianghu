@@ -7,14 +7,16 @@ const Register = () => {
     return (
         <div className="Register">
             <Header />
-            <body className="Register-body">
+            <div className="Register-body">
                 <div id="register">
-                    Earn a place in Jiang Hu
+                    Register
               </div>
 
                 <RegisterForm />
 
-            </body>
+            </div>
         </div >
     );
-}; export default Register;
+};
+
+export default Register;

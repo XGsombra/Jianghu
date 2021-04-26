@@ -2,7 +2,8 @@
     background-color: #282c34;
     width: 100%;
     border-bottom: 1px;
-    border-color: white;
+    border-bottom-color: white;
+    border-bottom-style: groove;
     color: white;
     padding: 10px;
     font-size: calc(10px + 2vmin);
