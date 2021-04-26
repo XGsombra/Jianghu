@@ -31,7 +31,15 @@
     border-radius: 5px;
 }
 
-#register-btn{
+#email-div{
+    display: none;
+}
+
+#register-phone-btn {
+    display: none;
+}
+
+.register-btns{
     margin-top: 10px;
     width: 100%;
     border-radius: 5px;

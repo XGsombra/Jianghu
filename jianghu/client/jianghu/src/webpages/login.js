@@ -1,5 +1,7 @@
 import React from 'react';
-import "../styles/home.css"
+import ReactDOM from "react-dom"
+import LoginForm from "../components/loginForm.jsx"
+import "../styles/login.css"
 
 function showForm(e) {
     document.getElementById("welcome").style.display = "none";
@@ -11,8 +13,8 @@ function showForm(e) {
 
 const Home = () => {
     return (
-        <div className="Home" onClick={showForm}>
-            <body className="Home-body">
+        <div className="Login" onClick={showForm}>
+            <body className="Login-body">
                 <div id="welcome">
                     WELCOME TO
                 </div>
@@ -20,14 +22,7 @@ const Home = () => {
                     JIANG HU
                 </div>
 
-                <div id="login-form">
-                    <div className="input">Account</div>
-                    <input id="phone-email" placeholder="Enter email or phone number" type="text"></input>
-                    <div className="input">Password</div>
-                    <input id="password" placeholder="Enter your password" type="text"></input>
-                    <a className="log-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
-                    <button id="login-btn">Log In</button>
-                </div>
+                <LoginForm />
 
                 <a className="log-link" id="register-link" href="register">Register Account</a>
 
@@ -41,4 +36,6 @@ const Home = () => {
             </body>
         </div >
     );
-}; export default Home;
+};
+
+export default Home;

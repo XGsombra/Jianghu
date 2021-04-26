@@ -5,7 +5,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import Home from './home';
+import Login from './login';
 import Register from './register';
 import MyBooks from './mybooks';
 import Favorites from './favorites';
@@ -13,7 +13,7 @@ import Favorites from './favorites';
 const Webpages = () => {
     return (
         <Router>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route path="/mybooks" component={MyBooks} />
             <Route path="/favorites" component={Favorites} />

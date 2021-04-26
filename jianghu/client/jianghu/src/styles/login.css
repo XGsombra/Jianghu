@@ -1,8 +1,8 @@
-.Home {
+.Login {
     text-align: center;
 }
   
-.Home-body {
+.Login-body {
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
