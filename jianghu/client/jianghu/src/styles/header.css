@@ -1,0 +1,14 @@
+#header {
+    background-color: #282c34;
+    width: 100%;
+    border-bottom: 1px;
+    border-color: white;
+    color: white;
+    padding: 10px;
+    font-size: calc(10px + 2vmin);
+    max-height: 5%;
+    position:absolute;
+    top: 0%;
+    text-align: left;
+    padding-left: 15px;
+}

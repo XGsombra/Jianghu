@@ -69,4 +69,11 @@
     display: none;
 }
 
+#copyright {
+    font-size: 15px;
+    opacity: 0.5;
+    display: none;
+    margin-top: 5px;
+}
+
   
