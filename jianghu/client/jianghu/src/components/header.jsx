@@ -5,7 +5,7 @@ class Header extends React.Component {
     render() {
         return (
             <div id="header">
-                <div className="clickable">JIANGHU</div>
+                <div className="clickable" onClick={(e) => window.location.href = "/home"}>JIANGHU</div>
             </div>
         );
     };
