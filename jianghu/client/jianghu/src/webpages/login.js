@@ -6,7 +6,7 @@ import "../styles/login.css"
 const Login = () => {
     return (
         <div className="Login">
-            <body className="Login-body">
+            <div className="Login-body">
                 <div id="jianghu">
                     JIANG HU
                 </div>
@@ -22,7 +22,7 @@ const Login = () => {
                 <div id="copyright" className="footer">
                     Copyright © 2021 Xuduo Gu
                 </div>
-            </body>
+            </div>
         </div >
     );
 };

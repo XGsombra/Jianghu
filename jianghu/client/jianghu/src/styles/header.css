@@ -5,16 +5,30 @@
     border-bottom-color: white;
     border-bottom-style: groove;
     color: white;
-    padding: 10px;
     font-size: calc(10px + 2vmin);
-    max-height: 5%;
     position:absolute;
     top: 0%;
     text-align: left;
-    padding-left: 15px;
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+    vertical-align:middle;
 }
 
-.clickable:hover{
+.title-btn {
+    margin: 10px;
+}
+
+.profile-pic {
+    height: 30px;
+    width: 30px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px;
+    margin-inline-end: 15px;
+}
+
+.title-btn:hover{
 	cursor: pointer;
-    width: 10vmin;
 }

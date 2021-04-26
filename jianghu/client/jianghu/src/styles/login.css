@@ -19,7 +19,7 @@
 }
 
 #login-form {
-    width: max-content;
+    width: 350px;
     margin-top: 1vmin;
     padding: 10px;
     border-radius: 5px;
@@ -30,7 +30,6 @@
 }
 
 .input{
-    width: 100%;
     font-size: 15px;
     text-align: left;
     margin-top: 5px;
@@ -69,7 +68,6 @@
 #copyright {
     font-size: 15px;
     opacity: 0.5;
-    display: none;
     margin-top: 5px;
 }
 

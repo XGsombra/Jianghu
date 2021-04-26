@@ -5,8 +5,9 @@ import { loginUser } from '../api/userApi';
 
 class LoginForm extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.wrapper = React.createRef();
         this.state = {
             account: "",
             password: "",
@@ -18,7 +19,7 @@ class LoginForm extends React.Component {
     handleLogin = function () {
         const { account, password } = this.state;
         loginUser(account, password, function (res) {
-            window.location.href = "/home";
+            window.location.href = "/";
         }, alert);
     };
 
@@ -28,8 +29,9 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <Form id='login-form' onSubmit={this.handleLogin} >
+            <Form id='login-form' onSubmit={this.handleLogin} fluid>
                 <Form.Input
+                    fluid
                     label='Account'
                     placeholder='Enter your email or phone number'
                     name='account'
@@ -39,6 +41,7 @@ class LoginForm extends React.Component {
                     required
                 />
                 <Form.Input
+                    fluid
                     label='Password'
                     type='password'
                     placeholder="Enter your password"
@@ -51,6 +54,7 @@ class LoginForm extends React.Component {
                 <a className="log-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
                 <Form.Button
                     fluid
+                    createRef
                     id="login-btn"
                     type='submit'
                 >Login</Form.Button>
