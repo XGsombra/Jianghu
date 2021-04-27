@@ -13,7 +13,7 @@ const Login = () => {
 
                 <LoginForm />
 
-                <a className="log-link" id="register-link" href="register">Register Account</a>
+                <a id="register-link" href="register">Register Account</a>
 
                 <div id="declaration" className="footer">
                     By registering an account, you accept the Term of Service and Privacy Policy

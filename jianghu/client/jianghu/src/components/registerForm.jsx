@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/register.css';
-import { Form, Input } from 'semantic-ui-react';
 import { registerUser } from '../api/userApi';
 
 class RegisterForm extends React.Component {

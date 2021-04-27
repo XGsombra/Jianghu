@@ -41,23 +41,27 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div id="login-form">
-                <div className="input">Account</div>
-                <input
-                    id="account"
-                    placeholder="Enter email or phone number"
-                    type="text"
-                    name="account"
-                    value={this.state.account}
-                    onChange={this.handleInputChange} />
-                <div className="input">Password</div>
-                <input
-                    id="password"
-                    placeholder="Enter your password"
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange} />
-                <a className="log-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
+                <div id="inputs">
+                    <div className="input-title">Account</div>
+                    <input
+                        id="account"
+                        className="input"
+                        placeholder="Enter email or phone number"
+                        type="text"
+                        name="account"
+                        value={this.state.account}
+                        onChange={this.handleInputChange} />
+                    <div className="input-title">Password</div>
+                    <input
+                        id="password"
+                        className="input"
+                        placeholder="Enter your password"
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleInputChange} />
+                </div>
+                <a id="term-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
                 <button id="login-btn" onClick={this.handleLogin}>Log In</button>
             </div>
         );

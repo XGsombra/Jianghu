@@ -14,8 +14,8 @@
 }
 
 #jianghu {
-    font-size: 60px;
-    margin: 1%;
+    font-size: 50px;
+    margin-bottom: 15px;
 }
 
 #login-form {
@@ -29,26 +29,44 @@
     flex-direction: column;
 }
 
-#login-form .input{
+#login-form .input-title{
     font-size: 15px;
     text-align: left;
     margin: 5px;
     border-radius: 5px;
 }
 
+#inputs{
+    margin-bottom: 10px;
+}
+
+.input{
+    width: 100%;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px;
+}
+
 #login-btn{
     width: 100%;
+    font-size: 20px;
+    padding: 5px;
     margin: 2px;
     border-radius: 5px;
     background-color: #282c34;
     color:white;
-    height: 5vmin;
+    margin-top: 15px;
 }
 
-.log-link {
+#term-link {
     color: white;
     font-size: 15px;
-    margin: 10px;
+}
+
+#register-link {
+    color: white;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 #hint {
