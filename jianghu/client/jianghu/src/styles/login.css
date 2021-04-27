@@ -14,31 +14,31 @@
 }
 
 #jianghu {
-    font-size: 50px;
+    font-size: 60px;
     margin: 1%;
 }
 
 #login-form {
-    width: 400px;
+    width: 50vmin;
     margin-top: 1vmin;
     padding: 10px;
     border-radius: 5px;
     border-color: white;
     border-width: 2px;
     border-style: groove;
+    flex-direction: column;
 }
 
 #login-form .input{
     font-size: 15px;
     text-align: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px;
     border-radius: 5px;
 }
 
 #login-btn{
     width: 100%;
-    margin-top: 5px;
+    margin: 2px;
     border-radius: 5px;
     background-color: #282c34;
     color:white;
@@ -50,7 +50,6 @@
     font-size: 15px;
     margin: 10px;
 }
-
 
 #hint {
     font-size: 20px;
@@ -69,5 +68,3 @@
     opacity: 0.5;
     margin-top: 5px;
 }
-
-  

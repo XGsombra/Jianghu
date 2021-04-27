@@ -40,13 +40,6 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody AddUserInputDto addUserInputDto, HttpServletRequest request) {
 
-//        if (request.getSession().getAttribute("userId") == null){
-//            return new ResponseEntity<>(
-//                    new HttpExceptionOutputDto("Access Denied"),
-//                    HttpStatus.valueOf(403)
-//            );
-//        }
-
         // check for bad input
         if (!addUserInputDto.check()){
             return new ResponseEntity<>(

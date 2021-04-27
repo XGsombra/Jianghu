@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/login.css';
-import { Form } from 'semantic-ui-react';
 import { loginUser } from '../api/userApi';
 
 class LoginForm extends React.Component {
@@ -33,44 +32,34 @@ class LoginForm extends React.Component {
             });
     };
 
-    handleInputChange = function (e, { name, value }) {
-        this.setState({ [name]: value })
+    handleInputChange = function (e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
     };
 
     render() {
         return (
-            <Form id='login-form' onSubmit={this.handleLogin}>
-                <Form.Group widths="equal">
-                    <Form.Input
-                        fluid
-                        label='Account'
-                        placeholder='Enter your email or phone number'
-                        name='account'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <Form.Input
-                        fluid
-                        label='Password'
-                        type='password'
-                        placeholder="Enter your password"
-                        name='password'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <a className="log-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
-                    {/* <Form.Checkbox label="Term of Service and Privacy Policy"></Form.Checkbox> */}
-                    <Form.Button
-                        fluid
-                        createRef
-                        id="login-btn"
-                        type='submit'
-                    >Login</Form.Button>
-                </Form.Group>
-
-            </Form>
+            <div id="login-form">
+                <div className="input">Account</div>
+                <input
+                    id="account"
+                    placeholder="Enter email or phone number"
+                    type="text"
+                    name="account"
+                    value={this.state.account}
+                    onChange={this.handleInputChange} />
+                <div className="input">Password</div>
+                <input
+                    id="password"
+                    placeholder="Enter your password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange} />
+                <a className="log-link" href="https://www.4399.com">Term of Service and Privacy Policy</a>
+                <button id="login-btn" onClick={this.handleLogin}>Log In</button>
+            </div>
         );
     };
 }

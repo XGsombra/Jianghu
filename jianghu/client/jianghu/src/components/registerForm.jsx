@@ -40,71 +40,57 @@ class RegisterForm extends React.Component {
             }, console.log);
     };
 
-    handleInputChange = function (e, { name, value }) {
-        this.setState({ [name]: value })
+    handleInputChange = function (e) {
+        this.setState({ [e.target.name]: e.target.value })
     };
 
     render() {
         return (
-            <div>
-                <Form id='register-form' onSubmit={this.handleRegister} >
-                    <Form.Input
-                        fluid
-                        label='Username'
-                        placeholder="Enter your username"
-                        name='username'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <Form.Input
-                        fluid
-                        label='Email'
-                        placeholder='Enter your email address'
-                        name='email'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        disabled={this.state.phone !== ""}
-                        required
-                    />
-                    <Form.Input
-                        fluid
-                        label='Phone'
-                        placeholder='Enter your phone number'
-                        name='phone'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        disabled={this.state.email !== ""}
-                        required
-                    />
-                    <Form.Input
-                        fluid
-                        label='Password'
-                        type='password'
-                        placeholder="Enter your password"
-                        name='password'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <Form.Input
-                        fluid
-                        label='Password Confirmation'
-                        placeholder="Enter your password again"
-                        type='password'
-                        name='passwordConfirm'
-                        className="input"
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <Form.Button
-                        fluid
-                        id="register-btns"
-                        type='submit'
-                    >Register</Form.Button>
-                </Form>
-            </div>
-
+            <div id="register-form">
+                <div className="input">Username</div>
+                <input
+                    id="username"
+                    placeholder="Enter your username"
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleInputChange} />
+                <div className="input">Phone Number</div>
+                <input
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    type="text"
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={this.handleInputChange}
+                    disabled={this.state.email !== ""} />
+                <div className="input">Email Address</div>
+                <input
+                    id="email"
+                    placeholder="Enter your email address"
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleInputChange}
+                    disabled={this.state.phone !== ""} />
+                <div className="input">Password</div>
+                <input
+                    id="password"
+                    placeholder="Enter your password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange} />
+                <div className="input">Confirm Password</div>
+                <input
+                    id="passwordConfirm"
+                    placeholder="Enter your password again"
+                    type="password"
+                    name="passwordConfirm"
+                    value={this.state.passwordConfirm}
+                    onChange={this.handleInputChange} />
+                <button className="register-btns" id="register-btn" onClick={this.handleRegister}>Register</button>
+            </div >
         );
     };
 }
