@@ -22,11 +22,13 @@
 .profile-pic {
     height: 30px;
     width: 30px;
-    background-color: #bbb;
     border-radius: 50%;
-    display: inline-block;
     margin: 10px;
     margin-inline-end: 15px;
+    background-image: url(../static/header/default-profile-pic.png);
+    background-color: #cccccc;
+    background-size: 30px;
+    background-repeat: no-repeat;
 }
 
 .title-btn:hover{
