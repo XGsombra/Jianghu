@@ -7,6 +7,7 @@ import Login from './login';
 import Register from './register';
 import Home from './home';
 import Favorites from './favorites';
+import Profile from "./profile";
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -20,6 +21,7 @@ const Webpages = () => {
             <Route exact path="/register" component={Register} />
             <Route path="/home" component={Home} />
             <Route path="/favorites" component={Favorites} />
+            <Route path="/profile" component={Profile} />
         </Router>
     );
 }; export default Webpages;

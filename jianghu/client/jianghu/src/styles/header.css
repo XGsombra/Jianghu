@@ -6,7 +6,6 @@
     border-bottom-style: groove;
     color: white;
     font-size: calc(10px + 2vmin);
-    position:absolute;
     top: 0%;
     text-align: left;
     display: flex;
@@ -17,7 +16,7 @@
 
 .title-btn {
     margin: 15px;
-}
+} 
 
 .profile-pic {
     height: 30px;
@@ -29,6 +28,10 @@
     background-color: #cccccc;
     background-size: 30px;
     background-repeat: no-repeat;
+}
+
+.profile-pic:hover{
+    cursor: pointer;
 }
 
 .title-btn:hover{

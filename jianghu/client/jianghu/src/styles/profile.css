@@ -1,0 +1,80 @@
+#profile {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-body{
+    background-color: #282c34;
+    min-height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+#user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top:10vh;
+}
+
+.user-table {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    border: 1px groove white;
+    border-radius: 5px;
+}
+
+#user-profile .labels {
+    display: flex;
+    flex-direction: column;
+    margin:20px
+}
+
+#user-profile #contents {
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+}
+
+#user-profile .profile-field-title {
+    margin:5px;
+}
+
+#user-profile .profile-field-content {
+    margin:5px;
+}
+
+#user-info-edit {
+    display: none;
+}
+
+#user-profile .profile-field-edit {
+    margin:5px;
+    height:20px;
+    width: 200px;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.profile-btn{
+    font-size: 20px;
+    text-align: center;
+    border: 1px groove white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.profile-btn:hover{
+    cursor: pointer;
+}
+
+#save-btn {
+    display: none;
+}
