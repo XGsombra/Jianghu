@@ -8,9 +8,6 @@ const Register = () => {
         <div className="Register">
             <Header />
             <div className="Register-body">
-                <div id="register">
-                    Register
-              </div>
 
                 <RegisterForm />
 

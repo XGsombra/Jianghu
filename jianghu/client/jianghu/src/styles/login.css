@@ -19,17 +19,16 @@
 }
 
 #login-form {
-    width: 350px;
+    width: 400px;
     margin-top: 1vmin;
     padding: 10px;
     border-radius: 5px;
     border-color: white;
     border-width: 2px;
     border-style: groove;
-    flex-direction: column;
 }
 
-.input{
+#login-form .input{
     font-size: 15px;
     text-align: left;
     margin-top: 5px;

@@ -8,6 +8,11 @@ import Register from './register';
 import Home from './home';
 import Favorites from './favorites';
 
+const styleLink = document.createElement("link");
+styleLink.rel = "stylesheet";
+styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+document.head.appendChild(styleLink);
+
 const Webpages = () => {
     return (
         <Router>
