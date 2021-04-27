@@ -8,9 +8,9 @@ const Register = () => {
         <div className="Register">
             <Header />
             <div className="Register-body">
-
+                <div id="register-title">Register Account
+                </div>
                 <RegisterForm />
-
             </div>
         </div >
     );

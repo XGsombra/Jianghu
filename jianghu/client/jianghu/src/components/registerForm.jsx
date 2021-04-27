@@ -46,49 +46,56 @@ class RegisterForm extends React.Component {
     render() {
         return (
             <div id="register-form">
-                <div className="input">Username</div>
-                <input
-                    id="username"
-                    placeholder="Enter your username"
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleInputChange} />
-                <div className="input">Phone Number</div>
-                <input
-                    id="phone"
-                    placeholder="Enter your phone number"
-                    type="text"
-                    name="phone"
-                    value={this.state.phone}
-                    onChange={this.handleInputChange}
-                    disabled={this.state.email !== ""} />
-                <div className="input">Email Address</div>
-                <input
-                    id="email"
-                    placeholder="Enter your email address"
-                    type="text"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    disabled={this.state.phone !== ""} />
-                <div className="input">Password</div>
-                <input
-                    id="password"
-                    placeholder="Enter your password"
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange} />
-                <div className="input">Confirm Password</div>
-                <input
-                    id="passwordConfirm"
-                    placeholder="Enter your password again"
-                    type="password"
-                    name="passwordConfirm"
-                    value={this.state.passwordConfirm}
-                    onChange={this.handleInputChange} />
-                <button className="register-btns" id="register-btn" onClick={this.handleRegister}>Register</button>
+                <div id="inputs">
+                    <div className="input-title">Username</div>
+                    <input
+                        id="username"
+                        className="input"
+                        placeholder="Enter your username"
+                        type="text"
+                        name="username"
+                        value={this.state.username}
+                        onChange={this.handleInputChange} />
+                    <div className="input-title">Phone Number</div>
+                    <input
+                        id="phone"
+                        className="input"
+                        placeholder="Enter your phone number"
+                        type="text"
+                        name="phone"
+                        value={this.state.phone}
+                        onChange={this.handleInputChange}
+                        disabled={this.state.email !== ""} />
+                    <div className="input-title">Email Address</div>
+                    <input
+                        id="email"
+                        className="input"
+                        placeholder="Enter your email address"
+                        type="text"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                        disabled={this.state.phone !== ""} />
+                    <div className="input-title">Password</div>
+                    <input
+                        id="password"
+                        className="input"
+                        placeholder="Enter your password"
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleInputChange} />
+                    <div className="input-title">Confirm Password</div>
+                    <input
+                        id="passwordConfirm"
+                        className="input"
+                        placeholder="Enter your password again"
+                        type="password"
+                        name="passwordConfirm"
+                        value={this.state.passwordConfirm}
+                        onChange={this.handleInputChange} />
+                </div>
+                <button id="register-btn" onClick={this.handleRegister}>Register</button>
             </div >
         );
     };

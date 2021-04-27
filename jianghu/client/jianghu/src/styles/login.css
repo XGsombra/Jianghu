@@ -19,14 +19,13 @@
 }
 
 #login-form {
-    width: 50vmin;
+    width: 30vw;
     margin-top: 1vmin;
     padding: 10px;
     border-radius: 5px;
     border-color: white;
     border-width: 2px;
     border-style: groove;
-    flex-direction: column;
 }
 
 #login-form .input-title{
@@ -69,14 +68,8 @@
     margin-top: 10px;
 }
 
-#hint {
-    font-size: 20px;
-    vertical-align: bottom;
-    margin-top: 20%;
-}
-
 #declaration {
-    margin-top: 10vmin;
+    margin-top: 20vmin;
     font-size: 15px;
     opacity: 0.5;
 }
