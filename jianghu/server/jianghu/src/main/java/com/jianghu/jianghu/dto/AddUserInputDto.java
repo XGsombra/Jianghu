@@ -50,7 +50,11 @@ public class AddUserInputDto extends InputDto{
 
     @Override
     public Boolean check() {
-        if (this.username == null || this.password == null || (this.email == null && this.phone == null)){
+        if (this.username == null ||
+                this.password == null ||
+                (this.email == null && this.phone == null) ||
+                this.username.length() > 15
+        ){
             return false;
         }
         return true;

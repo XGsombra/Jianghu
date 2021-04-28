@@ -11,7 +11,6 @@ export function registerUser(username, email, phone, password, onSuccess, onErro
     if (phone === "") {
         phone = null;
     }
-    console.log("called registerUser");
     const data = JSON.stringify({ username, email, phone, password });
     axios.post(base + '/api/users/signup', data, config).then(onSuccess).catch(onError);
 }

@@ -19,14 +19,16 @@ class RegisterForm extends React.Component {
 
     handleRegister = function () {
         const { username, password, passwordConfirm, email, phone } = this.state;
-        console.log(username);
         if (email !== "" && !email.includes("@")) {
             alert("Invalid email address");
             return;
         }
         if (phone !== "" && isNaN(phone)) {
-            alert("Invalid phone address");
+            alert("Invalid phone number");
             return;
+        }
+        if (username.length > 15) {
+            alert("Username too long");
         }
         if (password !== passwordConfirm) {
             alert("Password doesn't match, please try again");

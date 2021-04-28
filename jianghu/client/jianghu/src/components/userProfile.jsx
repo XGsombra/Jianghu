@@ -6,14 +6,28 @@ class UserProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "Xiagou",
-            email: "ut.com",
-            phone: "647413312",
-            level: 1
+            username: "",
+            email: "",
+            phone: "",
+            level: 0,
+            password: "",
+            passwordConfirm: ""
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.handleLoad = this.handleLoad.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('load', this.handleLoad);
+    }
+
+    handleLoad = function (e) {
+        const { username } = this.state;
+        console.log(username);
+        console.log(localStorage.getItem("userId"));
+        this.setState({ [username]: localStorage.getItem("userId") })
     }
 
     handleEdit = function (e) {
@@ -59,13 +73,15 @@ class UserProfile extends React.Component {
                         <label className="profile-field-title">Username</label>
                         <label className="profile-field-title">Email Address: </label>
                         <label className="profile-field-title">Phone Number:  </label>
-                        <label className="profile-field-title">Level:         </label>
+                        <label className="profile-field-title">New Password:  </label>
+                        <label className="profile-field-title">Confirm Password:</label>
                     </div>
                     <div id="contents">
-                        <input className="profile-field-edit" value={this.state.username} />
-                        <input className="profile-field-edit" value={this.state.email} />
-                        <input className="profile-field-edit" value={this.state.phone} />
-                        <div className="profile-field-content">{this.state.level}</div>
+                        <input className="profile-field-edit" name="username" value={this.state.username} onChange={this.handleInputChange} />
+                        <input className="profile-field-edit" name="email" value={this.state.email} onChange={this.handleInputChange} />
+                        <input className="profile-field-edit" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+                        <input className="profile-field-edit" name="password" placeholder="Enter new password" onChange={this.handleInputChange} />
+                        <input className="profile-field-edit" name="passwordConform" placeholder="Enter new password again" onChange={this.handleInputChange} />
                     </div>
                 </div>
                 <div id="btns">
