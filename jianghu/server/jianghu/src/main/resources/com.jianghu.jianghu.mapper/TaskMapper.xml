@@ -36,6 +36,10 @@
     PRIMARY KEY (taskid))
   </update>
 
+  <select id="checkTaskExist" resultType="Boolean">
+    SELECT COUNT(*) > 0 FROM task WHERE taskid = #{taskId}
+  </select>
+
   <insert id="addTask">
     INSERT INTO task(taskid, title, date, content, commission, publisherid, takerid, active,
     locationlatitude, locationlongitude)
@@ -49,6 +53,12 @@
     WHERE taskid = #{taskId}
   </update>
 
+  <update id="yieldTask">
+    UPDATE task
+    SET takerid = ""
+    WHERE taskid = #{taskId}
+  </update>
+
   <update id="deactivateTask">
     UPDATE task
     SET active = false
@@ -59,8 +69,8 @@
     SELECT * FROM task WHERE taskid = #{taskId}
   </select>
 
-  <select id="getAllActiveTasks" resultType="com.jianghu.jianghu.entity.Task">
-    SELECT * FROM task WHERE active = true
+  <select id="getAllUntakenTasks" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE active = true AND takerid = ""
   </select>
 
   <select id="getTasksByPublisherId" resultType="com.jianghu.jianghu.entity.Task">

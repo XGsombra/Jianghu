@@ -19,7 +19,7 @@ public class Task implements Serializable {
   public Task(String taskId, String title, Date date, String content, Integer commission,
       String publisherId, String takerId, Boolean active, Double locationLatitude,
       Double locationLongitude) {
-    this.takerId = takerId;
+    this.taskId = taskId;
     this.title = title;
     this.date = date;
     this.content = content;
@@ -33,7 +33,7 @@ public class Task implements Serializable {
 
   public Task(String taskId, String title, String content, Integer commission, String publisherId,
       Double locationLatitude, Double locationLongitude) {
-    this.takerId = taskId;
+    this.taskId = taskId;
     this.title = title;
     this.date = new Date();
     this.content = content;

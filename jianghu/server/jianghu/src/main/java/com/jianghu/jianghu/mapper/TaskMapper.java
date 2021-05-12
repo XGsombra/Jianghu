@@ -12,17 +12,21 @@ public interface TaskMapper {
 
   void createTaskTable();
 
+  Boolean checkTaskExist(String taskId);
+
   void addTask(String taskId, String title, Date date, String content, Integer commission,
       String publisherId, String takerId, Boolean active, Double locationLatitude,
       Double locationLongitude);
 
   void takeTask(String taskId, String takerId);
 
+  void yieldTask(String taskId);
+
   void deactivateTask(String taskId);
 
   Task getTaskByTaskId(String taskId);
 
-  List<Task> getAllActiveTasks();
+  List<Task> getAllUntakenTasks();
 
   List<Task> getAllTasksByPublisherId(String publisherId);
 
