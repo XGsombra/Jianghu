@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
     public Boolean initializeUserInfoTable(){
         if (!userMapper.existUserInfoTable()){
             userMapper.createUserInfoTable();
-            System.out.println("Initialization: Successfully initiated tables for user information");
+            System.out.println("Initialization: Successfully initiated table user_info");
             return true;
         }
         System.out.println("Initialization: table user_info already exists");
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService, AuthenticationService {
     public Boolean initializeUserAuthTable(){
         if (!userAuthMapper.existUserAuthTable()){
             userAuthMapper.createUserAuthTable();
-            System.out.println("Initialization: Successfully initiated tables for user authentication");
+            System.out.println("Initialization: Successfully initiated table user_auth");
             return true;
         }
         System.out.println("Initialization: table user_auth already exists");

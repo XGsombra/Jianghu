@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.jianghu.jianghu.mapper.TaskMapper" >
+  <resultMap id ="TaskMap" type="com.jianghu.jianghu.entity.Task">
+    <result column="takerid" property="takerid"/>
+    <result column="title" property="title"/>
+    <result column="date" property="date"/>
+    <result column="content" property="content"/>
+    <result column="commission" property="commission"/>
+    <result column="publisherid" property="publisherid"/>
+    <result column="takerid" property="takerid"/>
+    <result column="active" property="active"/>
+    <result column="locationlatitude" property="locationlatitude"/>
+    <result column="locationlongitude" property="locationlongitude"/>
+  </resultMap>
+
+  <select id="existTaskTable" resultType="Boolean">
+    SELECT COUNT(*) > 0
+    FROM information_schema.TABLES
+    WHERE table_name = 'task'
+  </select>
+
+  <update id="createTaskTable">
+    create table task (
+    taskid TEXT NOT NULL,
+    title TEXT NOT NULL,
+    date DATE NOT NULL,
+    content TEXT NOT NULL,
+    commission INTEGER NOT NULL,
+    publisherid TEXT NOT NULL,
+    takerid TEXT NOT NULL,
+    active BOOLEAN NOT NULL,
+    locationlatitude DOUBLE PRECISION NOT NULL,
+    locationlongitude DOUBLE PRECISION NOT NULL,
+    PRIMARY KEY (taskid))
+  </update>
+
+  <insert id="addTask">
+    INSERT INTO task(taskid, title, date, content, commission, publisherid, takerid, active,
+    locationlatitude, locationlongitude)
+    VALUES(#{taskId}, #{title}, #{date}, #{content}, #{commission}, #{publisherId}, #{takerId},
+    #{active}, #{locationlatitude}, #{locationlongitude})
+  </insert>
+
+  <update id="takeTask">
+    UPDATE task
+    SET takerid = #{takerId}
+    WHERE taskid = #{taskId}
+  </update>
+
+  <update id="deactivateTask">
+    UPDATE task
+    SET active = false
+    WHERE taskid = #{taskId}
+  </update>
+
+  <select id="getTaskByTaskId" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE taskid = #{taskId}
+  </select>
+
+  <select id="getAllActiveTasks" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE active = true
+  </select>
+
+  <select id="getTasksByPublisherId" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE publisherid = #{publisherId}
+  </select>
+
+  <select id="getTasksByTakerId" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE takerid = #{takerId}
+  </select>
+
+  <select id="getAllTasksByLocation" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE
+      locationlatitude &lt; #{upperLatitude} AND
+      locationlongitude &lt; #{upperLongitude} AND
+      locationlatitude &gt; #{lowerLatitude} AND
+      locationlongitude &gt; #{lowerLongitude}
+  </select>
+
+  <select id="getAllTasksByCommission" resultType="com.jianghu.jianghu.entity.Task">
+    SELECT * FROM task WHERE
+      commission &lt; #{upperCommission} AND
+      commission &gt; #{lowerCommission}
+  </select>
+</mapper>

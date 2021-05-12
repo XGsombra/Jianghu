@@ -18,6 +18,14 @@ public class User implements Serializable{
         this.level = 0;
     }
 
+    public User(String userId, String username, String email, String phone, Integer level) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.level = level;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
