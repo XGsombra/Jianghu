@@ -139,11 +139,19 @@ public class TaskController {
     return new ResponseEntity<>(tasks, HttpStatus.valueOf(200));
   }
 
+  /** Get the tasks by related userId.
+   *
+   * @param userId the userId of related user
+   * @param role the role of the user, "taker" or "publisher"
+   * @param page the number of page
+   * @param request the http request
+   * @return the tasks
+   */
   @GetMapping("/{userId}")
-  public ResponseEntity<?> getTasksByPublisherId(@PathVariable String userId,
-                                                 @RequestParam String role,
-                                                 @RequestParam Integer page,
-                                                 HttpServletRequest request) {
+  public ResponseEntity<?> getTasksByUserId(@PathVariable String userId,
+                                            @RequestParam String role,
+                                            @RequestParam(defaultValue = "0") Integer page,
+                                            HttpServletRequest request) {
 
     if ((!role.equals("taker") && !role.equals("publisher")) || page < 0){
       return new ResponseEntity<>(new HttpExceptionOutputDto("Bad Input"), HttpStatus.valueOf(400));
@@ -154,6 +162,59 @@ public class TaskController {
     } else {
       tasks = taskServiceImpl.getTasksByTakerId(userId, page);
     }
+    return new ResponseEntity<>(tasks, HttpStatus.valueOf(200));
+  }
+
+  /**
+   * Get tasks by location range.
+   *
+   * @param lowerLatitude  the lower bound of latitude
+   * @param upperLatitude  the upper bound of latitude
+   * @param lowerLongitude the lower bound of longitude
+   * @param upperLongitude the upper bound of longitude
+   * @param page           the page number
+   * @return the tasks
+   */
+  @GetMapping("/location")
+  public ResponseEntity<?> getTasksByLocation(@RequestParam Double lowerLatitude,
+                                              @RequestParam Double lowerLongitude,
+                                              @RequestParam Double upperLatitude,
+                                              @RequestParam Double upperLongitude,
+                                              @RequestParam(defaultValue = "0") Integer page) {
+    if (lowerLatitude == null ||
+        lowerLongitude == null ||
+        upperLatitude == null ||
+        upperLongitude == null ||
+        lowerLatitude > upperLatitude ||
+        lowerLongitude > upperLongitude ||
+        (page != null && page < 0) ||
+        lowerLatitude < -90 ||
+        lowerLongitude < -190 ||
+        upperLatitude > 90 ||
+        upperLongitude > 180){
+      return new ResponseEntity<>(new HttpExceptionOutputDto("Bad Input"), HttpStatus.valueOf(400));
+    }
+
+    List<Task> tasks = taskServiceImpl.getTasksByLocation(lowerLatitude, upperLatitude,
+        lowerLongitude, upperLongitude, page);
+
+    return new ResponseEntity<>(tasks, HttpStatus.valueOf(200));
+  }
+
+  @GetMapping("/commission")
+  public ResponseEntity<?> getTasksByCommission(@RequestParam Integer lowerCommission,
+                                                @RequestParam Integer upperCommission,
+                                                @RequestParam(defaultValue = "0") Integer page) {
+    if (lowerCommission == null ||
+        upperCommission == null ||
+        (page != null && page < 0) ||
+        lowerCommission > upperCommission ||
+        lowerCommission < 0){
+      return new ResponseEntity<>(new HttpExceptionOutputDto("Bad Input"), HttpStatus.valueOf(400));
+    }
+
+    List<Task> tasks = taskServiceImpl.getTasksByCommission(lowerCommission, upperCommission, page);
+
     return new ResponseEntity<>(tasks, HttpStatus.valueOf(200));
   }
 }

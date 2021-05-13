@@ -82,4 +82,26 @@ public interface TaskService {
      * @return the tasks on the page
      */
     List<Task> getTasksByTakerId(String takerId, Integer page);
+
+    /** Get tasks by location range.
+     *
+     * @param lowerLatitude the lower bound of latitude
+     * @param upperLatitude the upper bound of latitude
+     * @param lowerLongitude the lower bound of longitude
+     * @param upperLongitude the upper bound of longitude
+     * @param page the page number
+     * @return the tasks
+     */
+    List<Task> getTasksByLocation(Double lowerLatitude, Double upperLatitude,
+        Double lowerLongitude, Double upperLongitude, Integer page);
+
+    /** Get tasks by commission range.
+     *
+     * @param lowerCommission the lower bound of commission
+     * @param upperCommission the upper bound of commission
+     * @param page the page of tasks
+     * @return the tasks
+     */
+    public List<Task> getTasksByCommission(Integer lowerCommission,
+        Integer upperCommission, Integer page);
 }
