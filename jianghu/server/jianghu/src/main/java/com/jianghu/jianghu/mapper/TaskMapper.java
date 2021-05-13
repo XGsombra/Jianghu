@@ -4,6 +4,7 @@ import com.jianghu.jianghu.entity.Task;
 import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.relational.core.sql.In;
 
 @Mapper
 public interface TaskMapper {
@@ -26,14 +27,15 @@ public interface TaskMapper {
 
   Task getTaskByTaskId(String taskId);
 
-  List<Task> getAllUntakenTasks();
+  List<Task> getAvailableTasks(Integer page, Integer itemNumPerPage);
 
-  List<Task> getAllTasksByPublisherId(String publisherId);
+  List<Task> getTasksByPublisherId(String publisherId, Integer page, Integer itemNumPerPage);
 
-  List<Task> getAllTasksByTakerId(String takerId);
+  List<Task> getTasksByTakerId(String takerId, Integer page, Integer itemNumPerPage);
 
-  List<Task> getAllTasksByLocation(Double lowerLatitude, Double upperLatitude,
-      Double lowerLongitude, Double upperLongitude);
+  List<Task> getTasksByLocation(Double lowerLatitude, Double upperLatitude,
+      Double lowerLongitude, Double upperLongitude, Integer page, Integer itemNumPerPage);
 
-  List<Task> getAllTasksByCommission(Integer lowerCommission, Integer upperCommission);
+  List<Task> getTasksByCommission(Integer lowerCommission, Integer upperCommission, Integer page,
+      Integer itemNumPerPage);
 }

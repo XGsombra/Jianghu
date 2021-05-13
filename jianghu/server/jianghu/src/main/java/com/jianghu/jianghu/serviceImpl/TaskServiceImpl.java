@@ -4,12 +4,17 @@ import com.jianghu.jianghu.entity.Task;
 import com.jianghu.jianghu.mapper.TaskMapper;
 import com.jianghu.jianghu.service.TaskService;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TaskServiceImpl implements TaskService {
+
+  @Value("${jianghu.const.item-num-per-page}")
+  private Integer itemNumPerPage;
 
   @Autowired
   private TaskMapper taskMapper;
@@ -111,5 +116,41 @@ public class TaskServiceImpl implements TaskService {
    */
   @Override
   public void deactivateTask(String taskId) {
+    taskMapper.deactivateTask(taskId);
+  }
+
+  /**
+   * Get available tasks. An available task is a task that is active and not taken by anyone.
+   *
+   * @param page the page number of task
+   * @return the tasks on the page
+   */
+  @Override
+  public List<Task> getAvailableTasks(Integer page) {
+    return taskMapper.getAvailableTasks(page, itemNumPerPage);
+  }
+
+  /**
+   * Get the tasks by the publisherId.
+   *
+   * @param publisherId the userId of the task publisher
+   * @param page        the page number
+   * @return the tasks on the page
+   */
+  @Override
+  public List<Task> getTasksByPublisherId(String publisherId, Integer page) {
+    return taskMapper.getTasksByPublisherId(publisherId, page, itemNumPerPage);
+  }
+
+  /**
+   * Get the tasks by the takerId.
+   *
+   * @param takerId the userId of the task taker
+   * @param page    the page number
+   * @return the tasks on the page
+   */
+  @Override
+  public List<Task> getTasksByTakerId(String takerId, Integer page) {
+    return taskMapper.getTasksByTakerId(takerId, page, itemNumPerPage);
   }
 }

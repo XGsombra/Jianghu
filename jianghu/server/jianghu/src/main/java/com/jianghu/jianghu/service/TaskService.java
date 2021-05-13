@@ -1,6 +1,7 @@
 package com.jianghu.jianghu.service;
 
 import com.jianghu.jianghu.entity.Task;
+import java.util.List;
 
 public interface TaskService {
 
@@ -57,4 +58,28 @@ public interface TaskService {
      * @param taskId the id of the task
     */
     void deactivateTask(String taskId);
+
+    /** Get available tasks. An available task is a task that is active and not
+     * taken by anyone.
+     *
+     * @param page the page number of task
+     * @return the tasks on the page
+     */
+    List<Task> getAvailableTasks(Integer page);
+
+    /** Get the tasks by the publisherId.
+     *
+     * @param publisherId the userId of the task publisher
+     * @param page the page number
+     * @return the tasks on the page
+     */
+    List<Task> getTasksByPublisherId(String publisherId, Integer page);
+
+    /** Get the tasks by the takerId.
+     *
+     * @param takerId the userId of the task taker
+     * @param page the page number
+     * @return the tasks on the page
+     */
+    List<Task> getTasksByTakerId(String takerId, Integer page);
 }

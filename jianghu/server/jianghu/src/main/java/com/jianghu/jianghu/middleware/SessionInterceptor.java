@@ -14,7 +14,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
-        if (uri.contains("/login") || uri.contains("/signup")) {
+        if (uri.contains("api/users/login") || uri.contains("/signup")) {
             return true;
         }
         if (request.getSession().getAttribute("userId") == null) {

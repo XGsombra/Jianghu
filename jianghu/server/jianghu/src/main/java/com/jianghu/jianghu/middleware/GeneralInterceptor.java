@@ -40,7 +40,7 @@ public class GeneralInterceptor implements HandlerInterceptor {
         // add the user id to log item
         logItem.append("user ID:      " + request.getSession().getAttribute("userId") + "\n");
         // add the request path to log item
-        logItem.append("request URI:  " + request.getRequestURI() + "\n");
+        logItem.append("request URL:  " + request.getRequestURL() + "\n");
         // add the separator to log item
         logItem.append("---------------------------------------------------\n");
 

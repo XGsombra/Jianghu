@@ -68,7 +68,7 @@ public class AddTaskInputDto extends InputDto{
   public Boolean check() {
     if (this.title == null ||
         this.content == null ||
-        this.content.length() > 300 ||
+        this.content.length() > 1000 ||
         this.commission == null ||
         this.commission < 0 ||
         this.locationLatitude == null ||
